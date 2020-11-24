@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <omp.h>
-#include <openssl/sha.h>
+#include <openssl/md5.h>
  
 typedef unsigned char byte;
  
@@ -31,7 +31,7 @@ void printResult(byte* password, byte* hash) {
 	memcpy(sPass, password, 5);
 	sPass[5] = 0;
 	printf("%s => ", sPass);
-	for (int i = 0; i < SHA256_DIGEST_LENGTH; i++)
+	for (int i = 0; i < MD5_DIGEST_LENGTH; i++)
 		printf("%02x", hash[i]);
 	printf("\n");
 }
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 				for (password[2] = 97; password[2] < 123; password[2]++)
 					for (password[3] = 97; password[3] < 123; password[3]++)
 						for (password[4] = 97; password[4] < 123; password[4]++) {
-							byte *hash = SHA256(password, 5, 0);
+							byte *hash = MD5(password, 5, 0);
 							if (matches(one, hash) || matches(two, hash) || matches(three, hash))
 								printResult(password, hash);
 						}
