@@ -33,13 +33,14 @@ int main(int argc, char **argv)
 												for (int o = 0 ; o <= 9; o++) {
 													for (int p = 0 ; p <= 9; p++) {
 														char password[] = { '0' + i, '0' + j, '0' + k, '0' + l, '0' + m, '0' + n, '0' + o, '0' + p  };
-
+														char copyOfPassword[8];
 														// hash
 														char passwordMD5[32];
 														MD5_HashString(password, passwordMD5);
 
 														// compare
 														if (strcmp("95dbb48a7b21a9cff9221eb0b431fa3c", passwordMD5) == 0) {
+															strcpy(copyOfPassword, password);
 															printf("Found!\nPassword is ");
 															for (int q = 0 ; q < 8 ; q++) {
 																printf("%d", copyOfPassword[q]);
