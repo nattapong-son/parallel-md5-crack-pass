@@ -38,7 +38,7 @@ void printResult(byte* password, byte* hash) {
  
 int main(int argc, char **argv)
 {
- 
+hash = malloc(MD5_DIGEST_LENGTH);
 #pragma omp parallel
 	{
  
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 				for (password[2] = 97; password[2] < 123; password[2]++)
 					for (password[3] = 97; password[3] < 123; password[3]++)
 						for (password[4] = 97; password[4] < 123; password[4]++) {
-							byte *hash = SHA256(password, 5, 0);
+							MD5(password, 5, hash);
 							if (matches(one, hash) || matches(two, hash) || matches(three, hash))
 								printResult(password, hash);
 						}
