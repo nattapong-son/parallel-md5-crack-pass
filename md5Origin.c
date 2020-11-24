@@ -46,14 +46,15 @@ int main(int argc, char **argv)
 		for (int a = 0; a < 26; a++)
 		{
 			byte password[5] = { 97 + a };
-			byte* one =   StringHashToByteArray("1115dd800feaacefdf481f1f9070374a2a81e27880f187396db67958b207cbad");
-			byte* two =   StringHashToByteArray("3a7bd3e2360a3d29eea436fcfb7e44c735d117c42d1c1835420b6b9942dd4f1b");
-			byte* three = StringHashToByteArray("74e1bb62f8dabb8125a58852b63bdf6eaef667cb56ac7f7cdba6d7305c50a22f");
+			byte* one =   StringHashToByteArray("59548977279905234b7ed3b1710837f2");
+			byte* two =   StringHashToByteArray("1f3870be274f6c49b3e31a0c6728957f");
+			byte* three = StringHashToByteArray("d9308f32f8c6cf370ca5aaaeafc0d49b");
 			for (password[1] = 97; password[1] < 123; password[1]++)
 				for (password[2] = 97; password[2] < 123; password[2]++)
 					for (password[3] = 97; password[3] < 123; password[3]++)
 						for (password[4] = 97; password[4] < 123; password[4]++) {
-							byte *hash = SHA256(password, 5, 0);
+							byte *hash = malloc(MD5_DIGEST_LENGTH);
+							MD5(password, 5, hash);
 							if (matches(one, hash) || matches(two, hash) || matches(three, hash))
 								printResult(password, hash);
 						}
