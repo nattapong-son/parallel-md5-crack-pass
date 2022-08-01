@@ -3,6 +3,8 @@
 #include <string.h>
 #include <omp.h>
 #include <openssl/sha.h>
+// test
+// again
  
 typedef unsigned char byte;
  
